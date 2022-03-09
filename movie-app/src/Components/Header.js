@@ -1,7 +1,7 @@
 import React from "react";
 
 function Header() {
-  return <div>Header</div>;
+  return <div className='header'>THE-MOVIE-HUB</div>;
 }
 
 export default Header;
