@@ -1,4 +1,42 @@
-.single-movie {
+.container {
+  margin-right: 10px;
+}
+
+.outline {
+  border: 2px solid #6a7074;
+  width: 201px;
+  height: 365px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: hsl(102, 18%, 86%);
+  color: black;
+}
+
+.outline:hover {
+  background-color: hsl(99, 11%, 41%);
+  color: aliceblue;
+}
+h4 {
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 0;
+  font-size: small;
+}
+
+.subtext {
   display: flex;
-  margin-bottom: 15px;
+  justify-content: space-evenly;
+  margin-top: -25px;
+}
+
+span {
+  color: aliceblue;
+  position: relative;
+  top: -1535px;
+  right: -5px;
+}
+.rating {
+  position: relative;
+  top: -25px;
+  right: 5px;
 }

@@ -16,12 +16,15 @@ function TrendingList() {
   }, [dispatch]);
 
   return (
-    <>
-      {results &&
-        results.map((movie) => {
-          return <SingleMovie />;
-        })}
-    </>
+    <div className='size'>
+      <div className='trending'>
+        {results &&
+          results.map((movie) => {
+            return <SingleMovie title={movie.title || movie.name} />;
+          })}
+      </div>
+      <h1>heloo</h1>
+    </div>
   );
 }
 
