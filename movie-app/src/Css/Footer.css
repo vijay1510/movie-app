@@ -3,6 +3,7 @@
   bottom: 0;
   width: 100%;
   color: black;
+  z-index: 100;
 }
 .Mui-selected {
   color: azure;

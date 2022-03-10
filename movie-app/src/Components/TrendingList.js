@@ -20,7 +20,13 @@ function TrendingList() {
       <div className='trending'>
         {results &&
           results.map((movie) => {
-            return <SingleMovie title={movie.title || movie.name} />;
+            return (
+              <SingleMovie
+                title={movie.title || movie.name}
+                rating={movie.vote_average}
+                date={movie.release_date || movie.first_air_date}
+              />
+            );
           })}
       </div>
       <h1>heloo</h1>
