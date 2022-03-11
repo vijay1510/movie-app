@@ -1,26 +1,28 @@
 import React from "react";
-import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
+import { Link } from "react-router-dom";
+import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
 
-function SingleMovie({ title, rating, date }) {
+function SingleMovie({ title, rating, date, poster, id, media }) {
   return (
-    <div className='outline'>
-      <div className='container'>
-        <span className='rating'>{rating}</span>
-        <img
-          src='https://image.tmdb.org/t/p/w200/74xTEgt7R36Fpooo50r9T25onhq.jpg'
-          alt='bat'
-        />
-        <h4>{title}</h4>
-        <div className='subtext'>
-          <p>
-            {date}
-            <span>
-              <FavoriteBorderSharpIcon />
-            </span>
-          </p>
+    <>
+      <div className='outline'>
+        <div className='container'>
+          <span className='rating'>{rating.toFixed(1)}</span>
+          <img src={`https://image.tmdb.org/t/p/w200${poster}`} alt={title} />
+          <Link className='link' to={`/movie/${id}`}>
+            <h4>{title}</h4>
+          </Link>
+          <div className='subtext'>
+            <p>
+              {date}
+              <span className='favicon'>
+                <FavoriteSharpIcon />
+              </span>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

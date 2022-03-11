@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { trendingMovies } from "../Redux/Action";
 import SingleMovie from "./SingleMovie";
 
 function TrendingList() {
   const { results } = useSelector((state) => state.trending);
-  console.log(typeof results);
-  console.log(results);
 
   const dispatch = useDispatch();
 
@@ -22,9 +19,13 @@ function TrendingList() {
           results.map((movie) => {
             return (
               <SingleMovie
+                key={movie.id}
                 title={movie.title || movie.name}
                 rating={movie.vote_average}
                 date={movie.release_date || movie.first_air_date}
+                poster={movie.poster_path}
+                id={movie.id}
+                media={movie.media_type}
               />
             );
           })}

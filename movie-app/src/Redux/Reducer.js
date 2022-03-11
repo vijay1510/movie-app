@@ -1,15 +1,23 @@
 const initialState = {
   trending: {},
   count: 0,
+  movieDetails: {},
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ALL_TRENDING": {
-      const data = action.payload;
+      const trendingData = action.payload;
       return {
         ...state,
-        trending: data,
+        trending: trendingData,
+      };
+    }
+    case "MOVIE_DETAILS": {
+      const movieData = action.payload;
+      return {
+        ...state,
+        movieDetails: movieData,
       };
     }
 
