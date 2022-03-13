@@ -86,3 +86,26 @@ export const allMovies = (data) => {
 };
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
+
+//allTV
+
+export const getAllTv = () => {
+  return async (dispatch, getState) => {
+    const tv = await fetch(
+      `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0`
+    );
+    const tvsJson = await tv.json();
+    console.log({ tvsJson });
+
+    dispatch(allTvs(tvsJson));
+  };
+};
+
+export const allTvs = (data) => {
+  return {
+    type: "ALL_TVS",
+    payload: data,
+  };
+};
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------

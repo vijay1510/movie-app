@@ -15,15 +15,19 @@ export default function Footer() {
   useEffect(() => {
     if (value === 0) {
       history.push("/movies");
+      setValue();
     }
     if (value === 1) {
       history.push("/tv-series");
+      setValue();
     }
     if (value === 2) {
       history.push("/Favorites");
+      setValue();
     }
     if (value === 3) {
       history.push("/search");
+      setValue();
     }
   }, [value, history]);
 

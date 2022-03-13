@@ -1,7 +1,7 @@
 const initialState = {
   trending: {},
   allMovies: {},
-  allTv: {},
+  allTvs: {},
   movieDetails: {},
   trailer: {},
 };
@@ -18,10 +18,20 @@ export const reducer = (state = initialState, action) => {
     }
     case "MOVIE_DETAILS": {
       const ids = action.payload;
+      const trendingMovies =
+        state.trending.results &&
+        state.trending.results.find((e) => e.id === Number(ids));
+      const allMovie =
+        state.allMovies.results &&
+        state.allMovies.results.find((e) => e.id === Number(ids));
+      const allTv =
+        state.allTvs.results &&
+        state.allTvs.results.find((e) => e.id === Number(ids));
+      console.log(trendingMovies, allMovie);
 
       return {
         ...state,
-        movieDetails: state.trending.results.find((e) => e.id === Number(ids)),
+        movieDetails: trendingMovies || allMovie || allTv,
       };
     }
     case "MOVIE_TRAILER": {
@@ -33,9 +43,18 @@ export const reducer = (state = initialState, action) => {
     }
     case "ALL_MOVIES": {
       const moviesData = action.payload;
+      console.log({ moviesData });
       return {
         ...state,
         allMovies: moviesData,
+      };
+    }
+    case "ALL_TVS": {
+      const tvsData = action.payload;
+      console.log({ tvsData });
+      return {
+        ...state,
+        allTvs: tvsData,
       };
     }
 

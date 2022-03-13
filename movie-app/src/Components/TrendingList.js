@@ -30,7 +30,7 @@ function TrendingList() {
             );
           })}
       </div>
-      <h1>heloo</h1>
+      <h1>TMDB</h1>
     </div>
   );
 }

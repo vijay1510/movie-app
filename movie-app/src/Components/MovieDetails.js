@@ -8,7 +8,7 @@ function MovieDetails() {
   const movieDetail = useSelector((state) => state.movieDetails);
   const results = useSelector((state) => state.trailer);
   const random = Math.floor(Math.random() * results.length);
-  console.log(details, results[0]?.key);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
