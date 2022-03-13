@@ -65,3 +65,24 @@ export const Trailer = (data) => {
   };
 };
 //-------------------------------------------------------------------------------------------------------------------------------
+
+//allmovies
+export const getAllMovies = () => {
+  return async (dispatch, getState) => {
+    const movies = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
+    );
+    const moviesJson = await movies.json();
+
+    dispatch(allMovies(moviesJson));
+  };
+};
+
+export const allMovies = (data) => {
+  return {
+    type: "ALL_MOVIES",
+    payload: data,
+  };
+};
+
+//---------------------------------------------------------------------------------------------------------------------------------------------

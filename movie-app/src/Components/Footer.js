@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -9,6 +10,22 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default function Footer() {
   const [value, setValue] = React.useState();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (value === 0) {
+      history.push("/movies");
+    }
+    if (value === 1) {
+      history.push("/tv-series");
+    }
+    if (value === 2) {
+      history.push("/Favorites");
+    }
+    if (value === 3) {
+      history.push("/search");
+    }
+  }, [value, history]);
 
   return (
     <div className='footer'>
@@ -25,6 +42,7 @@ export default function Footer() {
             label='Movies'
             icon={<MovieIcon />}
           />
+
           <BottomNavigationAction
             sx={{ color: "#B5E0FF" }}
             label='TV-Series'

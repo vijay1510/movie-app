@@ -31,6 +31,13 @@ export const reducer = (state = initialState, action) => {
         trailer: trailerData,
       };
     }
+    case "ALL_MOVIES": {
+      const moviesData = action.payload;
+      return {
+        ...state,
+        allMovies: moviesData,
+      };
+    }
 
     default:
       return state;
