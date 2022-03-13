@@ -5,22 +5,20 @@ import Footer from "./Components/Footer";
 import TrendingList from "./Components/TrendingList";
 import MovieDetails from "./Components/MovieDetails";
 
-const details = "the- ba";
-
 function App() {
   return (
     <div className='App'>
+      <Header />
       <Switch>
         <Route exact path='/'>
-          <Header />
           <h1 className='app-h1'>Trending......</h1>
           <TrendingList />
-          <Footer />
         </Route>
         <Route exact path='/movie/:details'>
           <MovieDetails />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }
