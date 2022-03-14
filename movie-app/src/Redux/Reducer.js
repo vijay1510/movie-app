@@ -27,7 +27,6 @@ export const reducer = (state = initialState, action) => {
       const allTv =
         state.allTvs.results &&
         state.allTvs.results.find((e) => e.id === Number(ids));
-      console.log(trendingMovies, allMovie);
 
       return {
         ...state,
@@ -43,7 +42,7 @@ export const reducer = (state = initialState, action) => {
     }
     case "ALL_MOVIES": {
       const moviesData = action.payload;
-      console.log({ moviesData });
+
       return {
         ...state,
         allMovies: moviesData,
@@ -51,7 +50,7 @@ export const reducer = (state = initialState, action) => {
     }
     case "ALL_TVS": {
       const tvsData = action.payload;
-      console.log({ tvsData });
+
       return {
         ...state,
         allTvs: tvsData,
