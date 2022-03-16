@@ -5,7 +5,7 @@ function Header() {
   return (
     <div>
       <Link to='/' className='header'>
-        THE-MOVIE-HUB
+        <span onClick={() => window.scroll(0, 0)}>THE-MOVIE-HUB</span>
       </Link>
     </div>
   );

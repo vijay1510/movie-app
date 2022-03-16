@@ -3,6 +3,9 @@
 @import "./Css/Trending.css";
 @import "./Css/Singlemovie.css";
 @import "./Css/Search.css";
+@import "./Css/MovieDetails.css";
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@100;300;700&display=swap");
 
 body,
 html {
@@ -10,6 +13,8 @@ html {
   padding: 0;
   box-sizing: border-box;
   background-color: #b3e5fc;
+  font-family: "Pacifico", cursive;
+  font-family: "Roboto", sans-serif;
 }
 
 .app-h1 {

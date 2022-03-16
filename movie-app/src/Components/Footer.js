@@ -7,10 +7,13 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import MovieIcon from "@mui/icons-material/Movie";
 import TvIcon from "@mui/icons-material/Tv";
 import SearchIcon from "@mui/icons-material/Search";
+import Badge from "@mui/material/Badge";
+import { useSelector } from "react-redux";
 
 export default function Footer() {
   const [value, setValue] = React.useState();
   const history = useHistory();
+  const results = useSelector((state) => state.favourites);
 
   useEffect(() => {
     if (value === 0) {
@@ -52,10 +55,15 @@ export default function Footer() {
             label='TV-Series'
             icon={<TvIcon />}
           />
+
           <BottomNavigationAction
             sx={{ color: "#B5E0FF" }}
             label='Favorites'
-            icon={<FavoriteIcon />}
+            icon={
+              <Badge badgeContent={results.length} color='success'>
+                <FavoriteIcon />
+              </Badge>
+            }
           />
           <BottomNavigationAction
             sx={{ color: "#B5E0FF" }}
