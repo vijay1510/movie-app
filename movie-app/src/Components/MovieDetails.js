@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { movieData, getTrailer } from "../Redux/Action";
+import { getTrailer } from "../Redux/Action";
 
 function MovieDetails() {
   const { details } = useParams();
@@ -12,7 +12,7 @@ function MovieDetails() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(movieData(details));
+    //dispatch(movieDetails(details));
     dispatch(getTrailer(details));
   }, [dispatch, details]);
 

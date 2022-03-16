@@ -30,7 +30,7 @@ export const allTrending = (data) => {
 //   };
 // };
 
-export const movieData = (data) => {
+export const movieDetails = (data) => {
   return {
     type: "MOVIE_DETAILS",
     payload: data,
@@ -47,9 +47,11 @@ export const getTrailer = (id) => {
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
     const trailerJson = movieTrailer && (await movieTrailer.json());
-    const tvTrailer = await fetch(
-      `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
-    );
+    const tvTrailer =
+      !movieTrailer &&
+      (await fetch(
+        `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      ));
 
     //https://api.themoviedb.org/3/tv/155493/videos?api_key=7381b55882ca1499d0d4de2c63bc9ed1&language=en-US
 
@@ -107,4 +109,66 @@ export const allTvs = (data) => {
   };
 };
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Favourites
+
+export const addToFavourite = (data) => {
+  return {
+    type: "ADD_TO_FAVOURITE",
+    payload: data,
+  };
+};
+
+export const removeAllFromFavourite = () => {
+  return {
+    type: "REMOVE_ALL_FROM_FAVOURITE",
+  };
+};
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+//Search by movies/tv
+
+export const getSearchMovie = (value) => {
+  //"https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=batman&page=1&include_adult=false";
+
+  return async (dispatch, getState) => {
+    const mSearch = await fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${value}&page=1&include_adult=false`
+    );
+    const searchMovieJson = await mSearch.json();
+    console.log({ searchMovieJson });
+
+    dispatch(movieSearch(searchMovieJson));
+  };
+};
+
+export const movieSearch = (data) => {
+  return {
+    type: "SEARCH_BY_MOVIE",
+    payload: data,
+  };
+};
+//---------------------------
+//TV
+
+export const getSearchTv = (value) => {
+  //"https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=batman&page=1&include_adult=false";
+
+  return async (dispatch, getState) => {
+    const tSearch = await fetch(
+      `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${value}&page=1&include_adult=false`
+    );
+    const searchTvJson = await tSearch.json();
+    console.log({ searchTvJson });
+    dispatch(tvSearch(searchTvJson));
+  };
+};
+
+export const tvSearch = (data) => {
+  return {
+    type: "SEARCH_BY_TV",
+    payload: data,
+  };
+};
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,23 @@
+.search {
+  width: 60%;
+  height: 60px;
+  margin-left: 20%;
+  border-radius: 10px;
+  background-color: aqua;
+}
+
+.search-topic {
+  display: flex;
+  width: 60%;
+  height: 60px;
+  margin-left: 20%;
+  cursor: pointer;
+  justify-content: space-around;
+}
+
+.container {
+}
+
+input:focus {
+  background-color: aliceblue;
+}

@@ -8,8 +8,12 @@ import ALLMovies from "./Components/ALLMovies";
 import AllTvSeries from "./Components/AllTvSeries";
 import ALLFavorites from "./Components/ALLFavorites";
 import Search from "./Components/Search";
+import Button from "@mui/material/Button";
+import { useDispatch } from "react-redux";
+import { removeAllFromFavourite } from "./Redux/Action";
 
 function App() {
+  const dispatch = useDispatch();
   return (
     <div className='App'>
       <Header />
@@ -30,7 +34,15 @@ function App() {
           <AllTvSeries />
         </Route>
         <Route exact path='/Favorites'>
-          <h1 className='app-h1'>FAVORITES......</h1>
+          <h1 className='app-h1'>
+            FAVORITES......{" "}
+            <Button
+              variant='outlined'
+              color='error'
+              onClick={() => dispatch(removeAllFromFavourite())}>
+              REMOVE ALL
+            </Button>
+          </h1>
           <ALLFavorites />
         </Route>
         <Route exact path='/search'>
