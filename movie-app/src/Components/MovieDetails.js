@@ -1,29 +1,37 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getTrailer } from "../Redux/Action";
+import { getTrailer, getCast } from "../Redux/Action";
 import Button from "@mui/material/Button";
+import Cast from "./Cast";
 
 function MovieDetails() {
   const { details } = useParams();
   const movieDetail = useSelector((state) => state.movieDetails);
   const results = useSelector((state) => state.trailer);
-  const random = Math.floor(Math.random() * results.length);
+  const { cast } = useSelector((state) => state.cast);
+  const random = results && Math.floor(Math.random() * results.length);
+  const mediaType = movieDetail.name ? "tv" : "movie";
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     //dispatch(movieDetails(details));
-    dispatch(getTrailer(details));
-  }, [dispatch, details]);
+    dispatch(getTrailer(details, mediaType));
+    dispatch(getCast(details, mediaType));
+  }, [dispatch, details, mediaType]);
 
   return (
     <>
       <div className='details'>
         <img
           className='details_img'
-          src={`https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}`}
-          alt={movieDetail.title}
+          src={
+            movieDetail.backdrop_path
+              ? `https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}`
+              : "https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg"
+          }
+          alt={movieDetail.title || movieDetail.name}
         />
         <h1>{movieDetail.title || movieDetail.name}</h1>
         <p className='details_plot'>{movieDetail.overview}</p>
@@ -36,6 +44,15 @@ function MovieDetails() {
             WATCH TRAILER
           </a>
         </Button>
+      </div>
+      <div className='details_cast'>
+        {cast &&
+          cast.map((e) => {
+            return <Cast key={e.id} name={e.name} pic={e.profile_path} />;
+          })}
+      </div>
+      <div>
+        <h1 style={{ opacity: 0 }}>TMDB</h1>
       </div>
     </>
   );

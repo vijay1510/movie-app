@@ -15,10 +15,11 @@ function SingleMovie({ title, rating, date, poster, id }) {
         <div className='container'>
           <span className='rating'>{rating.toFixed(1)}</span>
           <img
+            className={!poster ? "outline_img" : ""}
             src={
               poster
                 ? `https://image.tmdb.org/t/p/w200${poster}`
-                : "../Image/poster-holder.jpg"
+                : "https://www.movienewz.com/img/films/poster-holder.jpg"
             }
             alt={title}
           />

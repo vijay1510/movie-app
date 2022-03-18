@@ -18,12 +18,15 @@ export default function Search() {
           onChange={(e) => setValue(e.target.value)}
         />
         <div className='search-topic'>
-          <p onClick={() => dispatch(getSearchMovie(value))}>
+          <p onClick={() => value !== "" && dispatch(getSearchMovie(value))}>
             Search by movies
           </p>
-          <p onClick={() => dispatch(getSearchTv(value))}>Search by Tv</p>
+          <p onClick={() => value !== "" && dispatch(getSearchTv(value))}>
+            Search by Tv
+          </p>
         </div>
       </div>
+
       <div className='size'>
         <div className='trending'>
           {results &&
@@ -41,7 +44,8 @@ export default function Search() {
               );
             })}
         </div>
-        <h1>TMDB</h1>
+
+        <h1 style={{ opacity: 0 }}>TMDB</h1>
       </div>
     </>
   );

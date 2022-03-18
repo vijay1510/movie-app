@@ -1,9 +1,10 @@
 .search {
-  width: 60%;
+  width: 80%;
   height: 60px;
-  margin-left: 20%;
+  margin-left: 10%;
   border-radius: 10px;
-  background-color: aqua;
+  background-color: #b3e5fc;
+  color: black;
 }
 
 .search-topic {
@@ -15,9 +16,17 @@
   justify-content: space-around;
 }
 
-.container {
+input:focus {
+  background-color: #0277bd;
+  color: azure;
+}
+input {
+  font-size: 2rem;
+  font-family: "Courier New", Courier, monospace;
+  color: rgb(255, 240, 242);
 }
 
-input:focus {
-  background-color: aliceblue;
+.search_page {
+  display: flex;
+  justify-content: center;
 }

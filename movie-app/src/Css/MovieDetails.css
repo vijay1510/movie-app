@@ -1,6 +1,7 @@
 .details {
   text-align: center;
   margin-top: 150px;
+  position: sticky;
 }
 .details_img {
   max-width: 100%;
@@ -18,10 +19,15 @@
   margin-bottom: 20px;
 }
 
-.details_btn {
-}
-
 .details_link {
   text-decoration: none;
   color: azure;
+}
+
+.details_cast {
+  display: flex;
+  margin-right: 10px;
+  margin-top: 20px;
+
+  overflow: auto;
 }

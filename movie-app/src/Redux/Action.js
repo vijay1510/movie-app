@@ -41,22 +41,19 @@ export const movieDetails = (data) => {
 
 //get trailer
 
-export const getTrailer = (id) => {
+export const getTrailer = (id, mediaType) => {
   return async (dispatch, getState) => {
     const movieTrailer = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/${mediaType}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
     const trailerJson = movieTrailer && (await movieTrailer.json());
-    const tvTrailer =
-      !movieTrailer &&
-      (await fetch(
-        `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
-      ));
+    // const tvTrailer = await fetch(
+    //   `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+    // );
 
-    //https://api.themoviedb.org/3/tv/155493/videos?api_key=7381b55882ca1499d0d4de2c63bc9ed1&language=en-US
+    // const tvJson = tvTrailer && (await tvTrailer.json());
 
-    const tvJson = tvTrailer && (await tvTrailer.json());
-    dispatch(Trailer(trailerJson.results || tvJson.results));
+    dispatch(Trailer(trailerJson.results));
   };
 };
 
@@ -134,10 +131,9 @@ export const getSearchMovie = (value) => {
 
   return async (dispatch, getState) => {
     const mSearch = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${value}&page=1&include_adult=false`
+      `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${value}&page=2&include_adult=false`
     );
     const searchMovieJson = await mSearch.json();
-    console.log({ searchMovieJson });
 
     dispatch(movieSearch(searchMovieJson));
   };
@@ -160,7 +156,7 @@ export const getSearchTv = (value) => {
       `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${value}&page=1&include_adult=false`
     );
     const searchTvJson = await tSearch.json();
-    console.log({ searchTvJson });
+
     dispatch(tvSearch(searchTvJson));
   };
 };
@@ -172,3 +168,32 @@ export const tvSearch = (data) => {
   };
 };
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Nosearch
+
+export const noSearch = () => {
+  return {
+    type: "NO_SEARCH",
+  };
+};
+
+//---------------------------------------------------------------------------------------
+//cast
+
+export const getCast = (id, mediaType) => {
+  return async (dispatch, getState) => {
+    const cast = await fetch(
+      `https://api.themoviedb.org/3/${mediaType}/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+    );
+    const castJson = await cast.json();
+
+    dispatch(allCast(castJson));
+  };
+};
+
+export const allCast = (data) => {
+  return {
+    type: "ALL_CAST",
+    payload: data,
+  };
+};
+//--------------------------------------------------------------------------------------------------

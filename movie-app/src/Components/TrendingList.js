@@ -30,7 +30,7 @@ function TrendingList() {
             );
           })}
       </div>
-      <h1>TMDB</h1>
+      <h1 style={{ opacity: 0 }}>TMDB</h1>
     </div>
   );
 }

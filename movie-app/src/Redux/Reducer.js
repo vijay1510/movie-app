@@ -6,6 +6,7 @@ const initialState = {
   trailer: {},
   favourites: [],
   moviesortv: {},
+  cast: {},
 };
 
 export const reducer = (state = initialState, action) => {
@@ -67,7 +68,8 @@ export const reducer = (state = initialState, action) => {
       const favMovie =
         state.trending.results.find((e) => e.id === addId) ||
         state.allMovies.results.find((e) => e.id === addId) ||
-        state.allTvs.results.find((e) => e.id === addId);
+        state.allTvs.results.find((e) => e.id === addId) ||
+        state.moviesortv.results.find((e) => e.id === addId);
       const isAvailable = state.favourites.find((e) => e.id === addId);
       if (isAvailable) {
         return {
@@ -97,6 +99,18 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         moviesortv: action.payload,
+      };
+    }
+    case "NO_SEARCH": {
+      return {
+        ...state,
+        moviesortv: {},
+      };
+    }
+    case "ALL_CAST": {
+      return {
+        ...state,
+        cast: action.payload,
       };
     }
 

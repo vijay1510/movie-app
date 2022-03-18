@@ -8,12 +8,14 @@ import MovieIcon from "@mui/icons-material/Movie";
 import TvIcon from "@mui/icons-material/Tv";
 import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { noSearch } from "../Redux/Action";
 
 export default function Footer() {
   const [value, setValue] = React.useState();
   const history = useHistory();
   const results = useSelector((state) => state.favourites);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (value === 0) {
@@ -30,14 +32,16 @@ export default function Footer() {
     }
     if (value === 3) {
       history.push("/search");
+      dispatch(noSearch());
       setValue();
     }
-  }, [value, history]);
+  }, [value, history, dispatch]);
 
   return (
     <div className='footer'>
       <Box sx={{ width: "100%" }}>
         <BottomNavigation
+          className='footer_bottom'
           sx={{ backgroundColor: "#01579B" }}
           showLabels
           value={value}
